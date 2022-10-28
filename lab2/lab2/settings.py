@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'model',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,7 +57,7 @@ ROOT_URLCONF = 'lab2.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['/model/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,5 +122,11 @@ STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
+MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
+
+TEMPLATE_DIRS = [
+    os.path.join(PROJECT_PATH, 'templates/'),
+]
